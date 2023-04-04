@@ -8,12 +8,12 @@ function MainHeader() {
     <header className={classes.header}>
       <h1 className={classes.logo}>
         <MdMessage />
-        Doctors
+        Employee List
       </h1>
       <p>
         <Link to="/create-post" className={classes.button}>
           <MdPostAdd size={18} />
-          Add Doctor
+          Add Employee
         </Link>
       </p>
     </header>

@@ -6,7 +6,8 @@ import reportWebVitals from "./reportWebVitals";
 import { RouterProvider, createBrowserRouter } from "react-router-dom";
 import NewPost, { action as newPostAction } from "./routes/NewPost";
 import RootLayout from "./routes/RootLayout";
-import PostDetails, {loader as postDeatilsLoader} from "./routes/PostDetails";
+import PostDetails, { loader as postDeatilsLoader } from "./routes/PostDetails";
+import EditPost, {loader as postEditLoader} from "./routes/EditPost";
 
 const router = createBrowserRouter([
   {
@@ -19,7 +20,18 @@ const router = createBrowserRouter([
         loader: postLoader,
         children: [
           { path: "/create-post", element: <NewPost />, action: newPostAction },
-          { path: ":id", element: <PostDetails />, loader: postDeatilsLoader}
+          {
+            path: ":id",
+            element: <PostDetails />,
+            loader: postDeatilsLoader,
+            children: [
+              {
+                path: "edit-post",
+                element: <EditPost />,
+                loader: postEditLoader
+              }
+            ],
+          },
         ],
       },
     ],

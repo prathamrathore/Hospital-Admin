@@ -10,6 +10,17 @@
   color: #eadbfb;
   font-weight: bold;
 }
+.dropDown{
+  width: 100%;
+  display: block;
+  font: inherit;
+  padding: 0.5rem;
+  border-radius: 6px;
+  border: none;
+  background-color: #c4a9e4;
+  color: #28262c;
+}
+
 
 .form input,
 .form textarea {
