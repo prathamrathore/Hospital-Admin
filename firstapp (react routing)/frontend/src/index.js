@@ -7,19 +7,19 @@ import { RouterProvider, createBrowserRouter } from "react-router-dom";
 import NewPost, { action as newPostAction } from "./routes/NewPost";
 import RootLayout from "./routes/RootLayout";
 import PostDetails, { loader as postDeatilsLoader } from "./routes/PostDetails";
-import EditPost, {loader as postEditLoader} from "./routes/EditPost";
+import EditPost, {loader as postEditLoader, action as editPostAction} from "./routes/EditPost";
 
 const router = createBrowserRouter([
   {
-    path: "/",
+    path: "/Admin",
     element: <RootLayout />,
     children: [
       {
-        path: "/",
+        path: "/Admin",
         element: <Posts />,
         loader: postLoader,
         children: [
-          { path: "/create-post", element: <NewPost />, action: newPostAction },
+          { path: "create-post", element: <NewPost />, action: newPostAction },
           {
             path: ":id",
             element: <PostDetails />,
@@ -28,6 +28,7 @@ const router = createBrowserRouter([
               {
                 path: "edit-post",
                 element: <EditPost />,
+                action: editPostAction,
                 loader: postEditLoader
               }
             ],

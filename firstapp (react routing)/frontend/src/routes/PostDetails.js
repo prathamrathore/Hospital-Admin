@@ -26,11 +26,12 @@ function PostDetails() {
     <div>
       <Modal>
         <main className={classes.details} style={{order:2}}>
-          <p className={classes.author}>{post.author}</p>
+          <p className={classes.author}>{post.registrationNumber}</p>
+          <p className={classes.author}>{post.name}</p>
           <br />
-          <p className={classes.text}>{post.body}</p>
+          <p className={classes.text}>{post.role}</p>
           <p className={classes.text}>{post.email}</p>
-          <p className={classes.text}>{post.number}</p>
+          <p className={classes.text}>{post.mobile}</p>
           <div
             style={{
               display: "flex",
@@ -45,7 +46,7 @@ function PostDetails() {
               </Link>
             </p>
             <p>
-              <Link to="/create-post" className={classes.button}>
+              <Link to=".." className={classes.button}>
                 <MdDelete size={18} />
                 Delete Employee
               </Link>

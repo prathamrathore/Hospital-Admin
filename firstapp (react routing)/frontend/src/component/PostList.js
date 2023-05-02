@@ -13,7 +13,7 @@ function PostList() {
     postContent = (
       <ul className={classes.posts}>
         {posts.map((post) => (
-          <Post key={post.id} id={post.id} author={post.author} Body={post.body} />
+          <Post key={post.id} id={post.id} author={post.name} Body={post.role} />
         ))}
       </ul>
     );

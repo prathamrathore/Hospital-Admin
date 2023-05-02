@@ -11,7 +11,7 @@ function MainHeader() {
         Employee List
       </h1>
       <p>
-        <Link to="/create-post" className={classes.button}>
+        <Link to="create-post" className={classes.button}>
           <MdPostAdd size={18} />
           Add Employee
         </Link>
