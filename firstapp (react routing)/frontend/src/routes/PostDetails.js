@@ -1,4 +1,4 @@
-import { useLoaderData, Link } from "react-router-dom";
+import { useLoaderData, Link, Form } from "react-router-dom";
 import { MdModeEdit, MdDelete } from "react-icons/md";
 import { Outlet } from "react-router-dom";
 import Modal from "../component/Modal";
@@ -41,15 +41,15 @@ function PostDetails() {
           >
             <p>
               <Link to="edit-post" className={classes.button}>
-                <MdModeEdit size={18} />
-                Edit Employee
+                <MdModeEdit size={23} />
+                <button className={classes.btn}>Edit</button>
               </Link>
             </p>
             <p>
-              <Link to=".." className={classes.button}>
-                <MdDelete size={18} />
-                Delete Employee
-              </Link>
+              <Form method="delete">
+                <MdDelete size={23} />
+                <button className={classes.btn}>Delete</button>
+              </Form>
             </p>
           </div>
         </main>
@@ -65,4 +65,21 @@ export async function loader({ params }) {
   const response = await fetch("http://localhost:9090/posts/" + params.id);
   const resData = await response.json();
   return resData.post;
+}
+
+export async function action(data) {
+  console.log(data.params.id);
+  const formData = await data.request.formData(); //this will return a object which is not usual object type
+  const postData = Object.fromEntries(formData); //this will generate the usual object(key value pair)
+  console.log(postData);
+
+  await fetch("https://71e9-119-161-98-68.ngrok-free.app/employee/" + data.params.id, {
+    method: "PUT",
+    body: JSON.stringify(postData),
+    headers: {
+      "Content-Type": "application/json",
+    },
+  });
+
+  return redirect("/Admin");
 }
