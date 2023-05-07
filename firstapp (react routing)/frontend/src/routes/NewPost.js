@@ -37,6 +37,8 @@ function NewPost() {
           <input type="text" id="name" required name="name" />
           <label htmlFor="name">Email</label>
           <input type="email" id="name" required name="email" />
+          <label htmlFor="name">Password</label>
+          <input type="password" id="name" required name="password" />
           <label htmlFor="name">Mobile No.</label>
           <input type="text" id="name" required name="mobile" />
         </p>

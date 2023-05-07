@@ -1,9 +1,10 @@
 const fs = require('node:fs/promises');
+const Employees = require("../models/employees");
 
 async function getStoredPosts() {
-  const rawFileContent = await fs.readFile('posts.json', { encoding: 'utf-8' });
-  const data = JSON.parse(rawFileContent);
-  const storedPosts = data.posts ?? [];
+  const employees = await Employees.find({});
+
+  const storedPosts = employees;
   return storedPosts;
 }
 

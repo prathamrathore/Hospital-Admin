@@ -1,11 +1,13 @@
-import { useLoaderData, Link, Form } from "react-router-dom";
+import { useLoaderData, Link, Form, redirect} from "react-router-dom";
 import { MdModeEdit, MdDelete } from "react-icons/md";
 import { Outlet } from "react-router-dom";
 import Modal from "../component/Modal";
 import classes from "./PostDetails.module.css";
 
 function PostDetails() {
-  const post = useLoaderData();
+  const posts = useLoaderData();
+  console.log(posts);
+  const post = posts;
 
   if (!post) {
     return (
@@ -64,22 +66,13 @@ export default PostDetails;
 export async function loader({ params }) {
   const response = await fetch("http://localhost:9090/posts/" + params.id);
   const resData = await response.json();
-  return resData.post;
+  return resData.posts;
 }
 
+
 export async function action(data) {
-  console.log(data.params.id);
-  const formData = await data.request.formData(); //this will return a object which is not usual object type
-  const postData = Object.fromEntries(formData); //this will generate the usual object(key value pair)
-  console.log(postData);
-
-  await fetch("https://71e9-119-161-98-68.ngrok-free.app/employee/" + data.params.id, {
-    method: "PUT",
-    body: JSON.stringify(postData),
-    headers: {
-      "Content-Type": "application/json",
-    },
+  await fetch("http://localhost:9090/posts/" + data.params.id, {
+    method: "delete"
   });
-
   return redirect("/Admin");
 }

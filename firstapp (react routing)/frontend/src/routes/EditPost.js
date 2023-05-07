@@ -1,5 +1,5 @@
 import classes from "./EditPost.module.css";
-import { Link, Form, useLoaderData } from "react-router-dom";
+import { Link, Form, useLoaderData,redirect } from "react-router-dom";
 import Modal from "../component/Modal";
 
 function EditPost() {
@@ -34,7 +34,7 @@ export async function loader({params}){
     "http://localhost:9090/posts/" + params.id
   );
   const resData = await response.json();
-  return resData.post;
+  return resData.posts;
 }
 
 export async function action(data) {
@@ -42,7 +42,7 @@ export async function action(data) {
   const postData = Object.fromEntries(formData); //this will generate the usual object(key value pair)
   console.log(postData);
 
-  await fetch("https://71e9-119-161-98-68.ngrok-free.app/employee/" + data.params.id, {
+  await fetch("http://localhost:9090/posts/" + data.params.id, {
     method: "PUT",
     body: JSON.stringify(postData),
     headers: {
